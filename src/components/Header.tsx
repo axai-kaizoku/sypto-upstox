@@ -5,7 +5,7 @@ import React, { SetStateAction, useEffect, useState } from 'react';
 import axios from 'axios';
 import { ModeToggle } from '@/components/navbar/theme-toggle';
 
-export default function Dashboard() {
+export default function Header() {
 	const [code, setCode] = useState<string | null>();
 	const [authToken, setAuthToken] = useState<string | null>('something');
 
@@ -65,16 +65,28 @@ export default function Dashboard() {
 
 	return (
 		<>
-			<div className="container flex gap-5">
+			<div className="flex gap-5 h-16 w-full shadow-2xl items-center justify-evenly text-lg ">
 				<ModeToggle />
-				<h1 className="title">Title</h1>
-				<button id="upstox">
+				<Link
+					className="title hover:underline"
+					href="/">
+					Home
+				</Link>
+				<button
+					id="upstox"
+					className="hover:underline">
 					<a href={process.env.NEXT_PUBLIC_UPSTOX_URL}>Upstox</a>
 				</button>
-				<Link href={{ pathname: '/profile', query: { token: authToken } }}>
+				<Link
+					href={{ pathname: '/profile', query: { token: authToken } }}
+					className="hover:underline">
 					Holdings
 				</Link>
-				<button onClick={upstoxLogout}>Logout</button>
+				<button
+					onClick={upstoxLogout}
+					className="hover:underline">
+					Logout
+				</button>
 			</div>
 		</>
 	);
